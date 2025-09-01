@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class OXTestSuite {
+public class BoardTestSuite {
     @Test
     void testOWinsRows(){
         //Given
-        OX game = new OX();
-        game.actualPlayer = 'O';
+        Board game = new Board(3);
+        game.setActualPlayer('O');
         //When
         game.writeMove(1);
         game.writeMove(2);
@@ -22,8 +22,8 @@ public class OXTestSuite {
     @Test
     void testOWinsColumns(){
         //Given
-        OX game = new OX();
-        game.actualPlayer = 'O';
+        Board game = new Board(3);
+        game.setActualPlayer('O');
         //When
         game.writeMove(2);
         game.writeMove(5);
@@ -36,8 +36,8 @@ public class OXTestSuite {
     @Test
     void testOWinsDiagonal1(){
         //Given
-        OX game = new OX();
-        game.actualPlayer = 'O';
+        Board game = new Board(3);
+        game.setActualPlayer('O');
         //When
         game.writeMove(1);
         game.writeMove(5);
@@ -50,8 +50,8 @@ public class OXTestSuite {
     @Test
     void testOWinsDiagonal2(){
         //Given
-        OX game = new OX();
-        game.actualPlayer = 'O';
+        Board game = new Board(3);
+        game.setActualPlayer('O');
         //When
         game.writeMove(3);
         game.writeMove(5);
@@ -64,8 +64,8 @@ public class OXTestSuite {
     @Test
     void testXWinsRows(){
         //Given
-        OX game = new OX();
-        game.actualPlayer = 'X';
+        Board game = new Board(3);
+        game.setActualPlayer('X');
         //When
         game.writeMove(4);
         game.writeMove(5);
@@ -78,8 +78,8 @@ public class OXTestSuite {
     @Test
     void testXWinsColumns(){
         //Given
-        OX game = new OX();
-        game.actualPlayer = 'X';
+        Board game = new Board(3);
+        game.setActualPlayer('X');
         //When
         game.writeMove(3);
         game.writeMove(6);
@@ -92,8 +92,8 @@ public class OXTestSuite {
     @Test
     void testXWinsDiagonal1(){
         //Given
-        OX game = new OX();
-        game.actualPlayer = 'X';
+        Board game = new Board(3);
+        game.setActualPlayer('X');
         //When
         game.writeMove(1);
         game.writeMove(5);
@@ -106,8 +106,8 @@ public class OXTestSuite {
     @Test
     void testXWinsDiagonal2(){
         //Given
-        OX game = new OX();
-        game.actualPlayer = 'X';
+        Board game = new Board(3);
+        game.setActualPlayer('X');
         //When
         game.writeMove(3);
         game.writeMove(5);
@@ -120,9 +120,9 @@ public class OXTestSuite {
     @Test
     void testDraw(){
         //Given
-        OX game = new OX();
+        Board game = new Board(3);
         //When
-        game.arrBoard = new char[][]{{'X', 'O', 'X'}, {'O', 'O', 'X'}, {'X', 'X', 'O'}};
+        game.setArray(new char[][]{{'X', 'O', 'X'}, {'O', 'O', 'X'}, {'X', 'X', 'O'}});
         //Then
         assertFalse(game.isWinner('X'));
         assertFalse(game.isWinner('O'));
@@ -132,9 +132,9 @@ public class OXTestSuite {
     @Test
     void testWrongMoveException(){
         //Given
-        OX game = new OX();
+        Board game = new Board(3);
         //When
-        game.actualPlayer = 'X';
+        game.setActualPlayer('X');
         game.writeMove(1);
         //Then
         assertThrows(WrongMoveException.class, () -> game.writeMove(19));

@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class GomokuTestSuite {
+public class BiggerBoardTestSuite {
     @Test
     void testOWinsRows(){
         //Given
-        Gomoku game = new Gomoku();
-        game.actualPlayer = 'O';
+        BiggerBoard game = new BiggerBoard(10);
+        game.setActualPlayer('O');
         //When
         game.writeMove(1);
         game.writeMove(2);
@@ -24,8 +24,8 @@ public class GomokuTestSuite {
     @Test
     void testOWinsColumns(){
         //Given
-        Gomoku game = new Gomoku();
-        game.actualPlayer = 'O';
+        BiggerBoard game = new BiggerBoard(10);
+        game.setActualPlayer('O');
         //When
         game.writeMove(2);
         game.writeMove(12);
@@ -40,8 +40,8 @@ public class GomokuTestSuite {
     @Test
     void testOWinsDiagonal1(){
         //Given
-        Gomoku game = new Gomoku();
-        game.actualPlayer = 'O';
+        BiggerBoard game = new BiggerBoard(10);
+        game.setActualPlayer('O');
         //When
         game.writeMove(4);
         game.writeMove(15);
@@ -56,8 +56,8 @@ public class GomokuTestSuite {
     @Test
     void testOWinsDiagonal2(){
         //Given
-        Gomoku game = new Gomoku();
-        game.actualPlayer = 'O';
+        BiggerBoard game = new BiggerBoard(10);
+        game.setActualPlayer('O');
         //When
         game.writeMove(6);
         game.writeMove(15);
@@ -67,13 +67,14 @@ public class GomokuTestSuite {
         //Then
         assertTrue(game.isWinner('O'));
 
+
     }
 
     @Test
     void testXWinsRows(){
         //Given
-        Gomoku game = new Gomoku();
-        game.actualPlayer = 'X';
+        BiggerBoard game = new BiggerBoard(10);
+        game.setActualPlayer('X');
         //When
         game.writeMove(1);
         game.writeMove(2);
@@ -88,8 +89,8 @@ public class GomokuTestSuite {
     @Test
     void testXWinsColumns(){
         //Given
-        Gomoku game = new Gomoku();
-        game.actualPlayer = 'X';
+        BiggerBoard game = new BiggerBoard(10);
+        game.setActualPlayer('X');
         //When
         game.writeMove(3);
         game.writeMove(13);
@@ -103,8 +104,8 @@ public class GomokuTestSuite {
     @Test
     void testXWinsDiagonal1(){
         //Given
-        Gomoku game = new Gomoku();
-        game.actualPlayer = 'X';
+        BiggerBoard game = new BiggerBoard(10);
+        game.setActualPlayer('X');
         //When
         game.writeMove(54);
         game.writeMove(65);
@@ -118,8 +119,8 @@ public class GomokuTestSuite {
     @Test
     void testXWinsDiagonal2(){
         //Given
-        Gomoku game = new Gomoku();
-        game.actualPlayer = 'X';
+        BiggerBoard game = new BiggerBoard(10);
+        game.setActualPlayer('X');
         //When
         game.writeMove(59);
         game.writeMove(68);
@@ -134,7 +135,7 @@ public class GomokuTestSuite {
     @Test
     void testDraw(){
         //Given
-        Gomoku game = new Gomoku();
+        BiggerBoard game = new BiggerBoard(10);
         //When
         String[] drawTab = {
  //filled example table, the winner is checked earlier in the loop in method play,
@@ -154,19 +155,20 @@ public class GomokuTestSuite {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 char actualPlayer = drawTab[i].charAt(j);
-                game.arrBoard[i][j] = actualPlayer;
+                game.getArray()[i][j] = actualPlayer;
             }
         }
         //Then
         assertTrue(game.isDraw());
+
     }
 
     @Test
     void testWrongMoveException(){
         //Given
-        Gomoku game = new Gomoku();
+        BiggerBoard game = new BiggerBoard(10);
         //When
-        game.actualPlayer = 'X';
+        game.setActualPlayer('X');
         game.writeMove(1);
         //Then
         assertThrows(WrongMoveException.class, () -> game.writeMove(120));
